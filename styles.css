@@ -272,3 +272,19 @@ body{padding-bottom:100px}
  }
  body{padding-bottom:110px !important}
 }
+
+/* FIX TOURNAMENT PAGE BOTTOM NAV */
+body:has(.quick-nav) .quick-nav{
+ position:fixed !important;
+ bottom:calc(12px + env(safe-area-inset-bottom)) !important;
+ left:50% !important;
+ transform:translateX(-50%) !important;
+ z-index:999999 !important;
+ display:flex !important;
+ visibility:visible !important;
+ opacity:1 !important;
+}
+body:has(.quick-nav) .quick-nav a{
+ visibility:visible !important;
+ opacity:1 !important;
+}
