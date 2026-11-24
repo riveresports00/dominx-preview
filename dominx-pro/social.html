@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social | DOMINX ESPORTS</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+.social-page{max-width:1100px;margin:auto;padding:70px 6% 120px}
+.social-page .eyebrow{color:#999;letter-spacing:3px;font-size:12px}
+.social-page h1{font-size:clamp(42px,9vw,90px);letter-spacing:-3px;line-height:.95;margin:20px 0}
+.social-page .intro{color:#999;margin:20px 0 40px}
+.social-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.social-card{display:block;text-decoration:none;color:#fff;border:1px solid #262626;background:#111;overflow:hidden;transition:.25s}
+.social-card:hover{border-color:#555;transform:translateY(-3px)}
+.social-card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.social-card .info{padding:22px}
+.social-card h2{font-size:22px;margin:0 0 10px}
+.social-card p{font-size:14px;line-height:1.7;color:#999;margin:0}
+.social-card .open{display:block;margin-top:18px;font-size:12px;letter-spacing:1px}
+@media(max-width:650px){.social-grid{grid-template-columns:1fr}.social-page{padding-top:40px}}
+</style>
+</head>
+<body>
+<header class="site-header">
+<a href="index.html" class="logo">DOMINX <span>ESPORTS</span></a>
+</header>
+<main class="social-page">
+<p class="eyebrow">COMMUNITY / UPDATES</p>
+<h1>STAY<br>CONNECTED.</h1>
+<p class="intro">Latest updates, announcements and community highlights.</p>
+<div class="social-grid">
+<a class="social-card" href="#" target="_blank">
+<img src="assets/samurai-banner.jpg" alt="Dominx update banner">
+<div class="info">
+<h2>Community Update</h2>
+<p>Stay tuned for the latest DOMINX ESPORTS news and announcements.</p>
+<span class="open">VIEW UPDATE ↗</span>
+</div>
+</a>
+<a class="social-card" href="#" target="_blank">
+<img src="assets/samurai-banner.jpg" alt="Dominx community banner">
+<div class="info">
+<h2>Follow the Journey</h2>
+<p>Updates, highlights and everything happening in our community.</p>
+<span class="open">VIEW UPDATE ↗</span>
+</div>
+</a>
+</div>
+</main>
+<section class="quick-nav" id="quick-nav">
+<a href="index.html#home" aria-label="Home" title="Home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5M5.5 9.5V21h13V9.5M9.5 21v-7h5v7"/></svg></a>
+<a href="competitive.html" aria-label="Tournament" title="Tournament"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0V4ZM8 6H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 3v5m-4 3h8"/></svg></a>
+<a href="social.html" aria-label="Social" title="Social"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a4.2 4.2 0 0 0 5.9 0l3.1-3.1a4.2 4.2 0 0 0-5.9-5.9l-1.8 1.8"/><path d="M13.4 10.6a4.2 4.2 0 0 0-5.9 0l-3.1 3.1a4.2 4.2 0 0 0 5.9 5.9l1.8-1.8"/></svg></a>
+<a href="javascript:void(0)" aria-label="Review" title="Review"><svg viewBox="0 0 24 24"><path d="M4 4h16v13H9l-5 4V4Zm4 5h8m-8 4h5"/></svg></a>
+</section>
+</body>
+</html>
