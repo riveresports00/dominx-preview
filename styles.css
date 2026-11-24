@@ -140,3 +140,29 @@ body{background-image:radial-gradient(ellipse at 70% 5%,rgba(130,15,25,.07),tran
 .comp-panel{min-height:75px!important;padding:14px 16px!important}
 @media(max-width:900px){.roster-page-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:520px){.roster-page-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.roster-page-grid .player-art{height:190px!important}.roster-page-grid .player-info{padding:12px!important}.roster-page-grid .player-info h3{font-size:19px!important}.roster-page-grid .profile-placeholder{font-size:12px!important;line-height:1.5!important}.comp-panels{grid-template-columns:1fr!important}}
+
+/* DOMINX QUICK NAV */
+.quick-nav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  padding:24px 5%;
+  max-width:1400px;
+  margin:0 auto;
+}
+.quick-nav .btn-primary{
+  min-height:54px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  font-size:13px;
+  letter-spacing:1.5px;
+  text-decoration:none;
+  transition:transform .25s ease,background .25s ease;
+}
+.quick-nav .btn-primary:hover{transform:translateY(-3px)}
+@media(max-width:650px){
+  .quick-nav{grid-template-columns:repeat(2,1fr);gap:9px;padding:16px 5%}
+  .quick-nav .btn-primary{min-height:48px;padding:12px;font-size:11px}
+}
