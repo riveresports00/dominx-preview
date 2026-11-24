@@ -166,3 +166,109 @@ body{background-image:radial-gradient(ellipse at 70% 5%,rgba(130,15,25,.07),tran
   .quick-nav{grid-template-columns:repeat(2,1fr);gap:9px;padding:16px 5%}
   .quick-nav .btn-primary{min-height:48px;padding:12px;font-size:11px}
 }
+
+/* DOMINX BOTTOM ICON NAV */
+.quick-nav{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:0;
+  width:min(420px,92%);
+  margin:30px auto 24px;
+  padding:10px;
+  background:#111;
+  border:1px solid #252525;
+  border-radius:14px;
+}
+.quick-nav a{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  color:#aaa;
+  text-decoration:none;
+  border-radius:9px;
+  transition:background .2s,color .2s,transform .2s;
+}
+.quick-nav a:hover{
+  background:#242424;
+  color:#fff;
+  transform:translateY(-2px);
+}
+.quick-nav svg{
+  width:23px;
+  height:23px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+@media(max-width:650px){
+  .quick-nav{position:relative;bottom:auto;margin:22px auto;width:92%}
+  .quick-nav a{min-height:48px}
+}
+
+/* DOMINX FIXED BOTTOM NAV */
+.quick-nav{
+ position:fixed !important;
+ bottom:16px !important;
+ left:50% !important;
+ transform:translateX(-50%) !important;
+ margin:0 !important;
+ width:min(420px,92%) !important;
+ z-index:9999 !important;
+ background:#111 !important;
+ border:1px solid #292929 !important;
+ border-radius:16px !important;
+ padding:8px !important;
+ display:flex !important;
+ justify-content:space-around !important;
+ align-items:center !important;
+ box-shadow:0 8px 30px rgba(0,0,0,.55) !important;
+}
+.quick-nav a{flex:1;min-height:48px}
+.quick-nav a:hover{transform:translateY(-2px)}
+body{padding-bottom:100px}
+
+/* DOMINX TOURNAMENT VIEW CLEANUP */
+.page-hero{padding-bottom:30px !important}
+.page-content{padding-top:25px !important}
+
+/* DOMINX BOTTOM BAR FINAL POLISH */
+.quick-nav a{
+ position:relative;
+ flex:1;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ min-height:50px;
+ color:#888;
+ border-radius:10px;
+ transition:color .25s ease,background .25s ease;
+ -webkit-tap-highlight-color:transparent;
+}
+.quick-nav a:active{
+ background:#252525;
+}
+.quick-nav a svg{
+ width:22px;
+ height:22px;
+ stroke:currentColor;
+ fill:none;
+ stroke-width:1.8;
+}
+.quick-nav a:hover{
+ color:#fff;
+ background:#1b1b1b;
+ transform:none;
+}
+@media(max-width:650px){
+ .quick-nav{
+  bottom:calc(12px + env(safe-area-inset-bottom)) !important;
+  width:calc(100% - 28px) !important;
+  max-width:420px;
+ }
+ body{padding-bottom:110px !important}
+}
