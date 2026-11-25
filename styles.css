@@ -157,3 +157,119 @@ body{background-image:radial-gradient(ellipse at 70% 5%,rgba(130,15,25,.07),tran
 .quick-nav a:hover,.quick-nav a:focus-visible{color:#fff;background:#1b1b1b;outline:none}
 body{padding-bottom:100px}
 @media(prefers-reduced-motion:reduce){.quick-nav a{transition:none!important}}
+
+/* DOMINX RADIAL MENU (client reference) */
+.menu-overlay{padding:0!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(5,5,6,.94)!important;backdrop-filter:blur(8px);overflow:auto!important}
+.menu-inner{display:none!important}
+.radial-menu{position:relative;width:min(88vw,440px);height:min(92vw,460px);min-height:350px;max-height:460px;margin:auto;flex:none}
+.radial-menu-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:104px;height:104px;border-radius:50%;background:#111113;border:1px solid rgba(226,28,42,.65);box-shadow:0 0 0 8px rgba(226,28,42,.08),0 0 28px rgba(226,28,42,.15);display:grid;place-items:center;z-index:2;overflow:hidden}
+.radial-menu-center img{width:100%;height:100%;object-fit:cover}
+.radial-menu-item{position:absolute;width:88px;height:88px;border-radius:50%;background:#141416;border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:#f4f3f3;font-size:8px;letter-spacing:1px;text-align:center;z-index:1;transition:transform .22s,border-color .22s,background .22s;box-shadow:0 8px 24px rgba(0,0,0,.24)}
+.radial-menu-item:hover,.radial-menu-item:focus-visible{transform:scale(1.08);background:#1c1517;border-color:rgba(226,28,42,.7);outline:none}
+.radial-icon{display:grid;place-items:center;color:var(--red);width:22px;height:22px}
+.radial-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.radial-home{left:50%;top:3%;transform:translateX(-50%)}.radial-home:hover,.radial-home:focus-visible{transform:translateX(-50%) scale(1.08)}
+.radial-contact{left:12%;top:24%}.radial-about{right:12%;top:24%}.radial-register{left:14%;top:52%}.radial-team{right:14%;top:52%}.radial-tournaments{left:29%;bottom:4%}.radial-news{right:29%;bottom:4%}
+@media(max-width:380px){.radial-menu{width:92vw;height:96vw;min-height:320px}.radial-menu-item{width:78px;height:78px;font-size:7px}.radial-menu-center{width:94px;height:94px}.radial-contact{left:7%}.radial-about{right:7%}.radial-register{left:8%}.radial-team{right:8%}.radial-tournaments{left:24%}.radial-news{right:24%}}
+
+/* Correct radial menu: six original DOMINX options around client logo */
+.radial-menu{position:relative;width:min(92vw,440px);height:min(92vw,440px);min-height:340px;max-height:440px;margin:auto;flex:none}
+.radial-menu-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;background:#101012;border:1px solid rgba(226,28,42,.75);box-shadow:0 0 0 8px rgba(226,28,42,.10),0 0 28px rgba(226,28,42,.18);display:grid;place-items:center;z-index:2;overflow:hidden}
+.radial-menu-center img{width:100%;height:100%;object-fit:contain}
+.radial-menu-item{position:absolute;width:82px;height:82px;border-radius:50%;background:#141416;border:1px solid rgba(255,255,255,.10);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#f4f3f3;font-size:8px;letter-spacing:.8px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .22s,border-color .22s,background .22s}
+.radial-menu-item:hover,.radial-menu-item:focus-visible{transform:translate(-50%,-50%) scale(1.08);background:#1c1517;border-color:rgba(226,28,42,.75);outline:none}
+.radial-icon{display:grid;place-items:center;color:var(--red);width:22px;height:22px}
+.radial-icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.radial-item-1{left:50%;top:7%;transform:translate(-50%,-50%)}
+.radial-item-2{left:84%;top:28%;transform:translate(-50%,-50%)}
+.radial-item-3{left:84%;top:72%;transform:translate(-50%,-50%)}
+.radial-item-4{left:50%;top:93%;transform:translate(-50%,-50%)}
+.radial-item-5{left:16%;top:72%;transform:translate(-50%,-50%)}
+.radial-item-6{left:16%;top:28%;transform:translate(-50%,-50%)}
+.radial-item-1:hover,.radial-item-1:focus-visible,.radial-item-2:hover,.radial-item-2:focus-visible,.radial-item-3:hover,.radial-item-3:focus-visible,.radial-item-4:hover,.radial-item-4:focus-visible,.radial-item-5:hover,.radial-item-5:focus-visible,.radial-item-6:hover,.radial-item-6:focus-visible{transform:translate(-50%,-50%) scale(1.08)}
+@media(max-width:380px){.radial-menu-item{width:72px;height:72px;font-size:7px}.radial-menu-center{width:78px;height:78px}}
+
+/* WhatsApp and Facebook marks added to the separate Community section */
+.whatsapp-mark svg,.facebook-mark svg{width:22px;height:22px;display:block}
+.whatsapp-mark{color:#25D366}.facebook-mark{color:#1877F2}
+
+/* Review / feedback / Q&A section: added inside the existing Review button route */
+.review-section{background:#0b0b0d;border-top:1px solid rgba(255,255,255,.07)}
+.review-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;margin:50px 0 30px}
+.review-intro h2{font:900 clamp(54px,8vw,100px)/.86 'Barlow Condensed';letter-spacing:-1.5px;margin:0}
+.review-intro h2 em{font-style:normal;color:var(--red)}
+.review-intro p{max-width:360px;font-size:12px;line-height:1.8;color:#999;margin:0}
+.review-tabs{display:flex;gap:8px;margin-bottom:24px;border-bottom:1px solid var(--line)}
+.review-tab{background:transparent;border:1px solid #343437;border-bottom:0;color:#999;padding:14px 22px;font:700 11px 'Inter';letter-spacing:1.2px;cursor:pointer}
+.review-tab.active{background:var(--red);border-color:var(--red);color:#fff}
+.review-panel{display:none;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px}
+.review-panel.active{display:grid}
+.review-form{display:flex;flex-direction:column;gap:10px;background:#111113;border:1px solid rgba(255,255,255,.08);padding:24px}
+.review-form label{font-size:9px;letter-spacing:1.5px;color:#aaa;margin-top:6px}
+.review-form input,.review-form textarea{background:#09090a;border:1px solid #303033;color:#eee;padding:14px;font:12px 'Inter';outline:none;width:100%;resize:vertical}
+.review-form input:focus,.review-form textarea:focus{border-color:var(--red)}
+.review-form .btn-primary{margin-top:8px;align-self:flex-start;cursor:pointer}
+.review-list{display:flex;flex-direction:column;gap:12px;min-width:0}
+.review-card{background:#111113;border:1px solid rgba(255,255,255,.08);padding:20px}
+.review-card h3{font:700 17px 'Barlow Condensed';margin:0 0 10px;color:#eee}
+.review-card p{font-size:12px;line-height:1.75;color:#aaa;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.review-card .review-meta{font-size:8px;color:#777;letter-spacing:1px;margin-bottom:10px}
+.review-reply{border-top:1px solid #333;margin-top:16px;padding-top:14px}
+.review-reply strong{display:block;font-size:9px;letter-spacing:1.3px;color:var(--red);margin-bottom:7px}
+.review-empty{font-size:11px;color:#777;border:1px dashed rgba(255,255,255,.14);padding:24px;line-height:1.7}
+@media(max-width:760px){.review-intro{display:block}.review-intro p{margin-top:20px}.review-panel,.review-panel.active{grid-template-columns:1fr}.review-form{padding:18px}.review-tabs{margin-top:20px}.review-tab{flex:1;text-align:center}}
+
+/* Review is a chat-style Q&A inside the existing fourth Review navigation item */
+.review-chat{max-width:850px;margin:0 auto;background:#101012;border:1px solid rgba(255,255,255,.09);display:flex;flex-direction:column;min-height:420px}
+.review-chat-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.08);background:#141416}
+.review-chat-avatar{width:34px;height:34px;flex:0 0 34px;border-radius:50%;display:grid;place-items:center;background:#b71927;color:#fff;font:800 14px 'Barlow Condensed';}
+.review-chat-head strong{display:block;color:#f2f2f2;font:700 11px 'Inter';letter-spacing:1px}
+.review-chat-head small{display:block;color:#888;font:9px 'Inter';letter-spacing:1px;margin-top:4px}
+.review-chat-status{margin-left:auto;color:#d21e2e;font-size:9px}
+.review-chat-messages{display:flex;flex-direction:column;gap:18px;padding:20px;min-height:260px;max-height:480px;overflow-y:auto}
+.review-chat-welcome,.review-chat-admin{display:flex;align-items:flex-end;gap:9px;max-width:85%}
+.review-chat-user{display:flex;justify-content:flex-end}
+.review-chat-bubble{background:#1a1a1d;border:1px solid rgba(255,255,255,.07);border-radius:12px 12px 12px 3px;padding:12px 14px;min-width:0}
+.review-chat-user .review-chat-bubble{background:#72151e;border-color:#851b25;border-radius:12px 12px 3px 12px;max-width:80%}
+.review-chat-bubble strong{font:700 9px 'Inter';letter-spacing:1.1px;color:#e33343;display:block;margin-bottom:6px}
+.review-chat-user .review-chat-bubble strong{display:none}
+.review-chat-bubble p{font:12px/1.65 'Inter';color:#ddd;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.review-chat-bubble small{display:block;color:#c1a0a3;font:8px 'Inter';margin-top:8px;text-align:right}
+.review-chat-pending p{color:#999;font-size:10px;font-style:italic}
+.review-chat-compose{border-top:1px solid rgba(255,255,255,.08);padding:14px;display:flex;flex-direction:column;gap:8px;background:#141416}
+.review-chat-compose input{background:#09090a;border:1px solid #303033;color:#eee;padding:10px 12px;font:11px 'Inter';outline:none}
+.review-chat-input-row{display:flex;align-items:stretch;gap:8px}
+.review-chat-input-row textarea{flex:1;min-width:0;background:#09090a;border:1px solid #303033;color:#eee;padding:12px;font:12px/1.5 'Inter';outline:none;resize:vertical;min-height:46px;max-height:140px}
+.review-chat-compose input:focus,.review-chat-input-row textarea:focus{border-color:var(--red)}
+.review-chat-input-row button{border:0;background:var(--red);color:white;padding:0 18px;font:800 10px 'Inter';letter-spacing:1px;cursor:pointer;white-space:nowrap}
+@media(max-width:600px){.review-chat-messages{padding:14px;max-height:420px}.review-chat-compose{padding:10px}.review-chat-input-row button{padding:0 13px}.review-chat-welcome,.review-chat-admin{max-width:95%}}
+
+/* Q&A chat is on the dedicated Review route, not on Home. */
+.review-page .review-section{padding-top:42px;padding-bottom:120px}
+.review-page .review-chat{min-height:55vh}
+/* Community social marks: refreshed bold, high-contrast symbols */
+.social-mark{width:38px!important;height:38px!important;min-width:38px!important;display:grid!important;place-items:center!important;background:#171719!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:9px!important;box-shadow:0 0 0 1px rgba(255,255,255,.04)!important}
+.social-mark svg{width:30px!important;height:30px!important;display:block!important}
+.whatsapp-mark{background:#25D366!important;border-color:#25D366!important;color:#fff!important;border-radius:50%!important}
+.whatsapp-mark svg{width:32px!important;height:32px!important}
+.instagram-mark{background:#191719!important}
+.instagram-mark svg{width:32px!important;height:32px!important;filter:none!important}
+.x-mark{background:#fff!important;color:#050505!important;border-radius:8px!important}
+.x-mark svg{width:28px!important;height:28px!important}
+
+/* Community social marks: refreshed bold, high-contrast symbols */
+.social-mark{width:38px!important;height:38px!important;min-width:38px!important;display:grid!important;place-items:center!important;background:#171719!important;border:1px solid rgba(255,255,255,.24)!important;border-radius:9px!important;box-shadow:0 0 0 1px rgba(255,255,255,.04)!important}
+.social-mark svg{width:30px!important;height:30px!important;display:block!important}
+.whatsapp-mark{background:#25D366!important;border-color:#25D366!important;color:#fff!important;border-radius:50%!important}
+.whatsapp-mark svg{width:32px!important;height:32px!important}
+.instagram-mark{background:#191719!important}
+.instagram-mark svg{width:32px!important;height:32px!important;filter:none!important}
+.x-mark{background:#fff!important;color:#050505!important;border-radius:8px!important}
+.x-mark svg{width:28px!important;height:28px!important}
+
+/* Monochrome community icons: Instagram + WhatsApp */
+.instagram-mark,.whatsapp-mark{background:#171719!important;border-color:rgba(255,255,255,.24)!important;color:#fff!important;border-radius:9px!important}
+.instagram-mark svg,.whatsapp-mark svg{width:30px!important;height:30px!important;filter:none!important}
+.instagram-mark svg rect,.instagram-mark svg circle{stroke:currentColor!important;stroke-width:2.1!important}
+.instagram-mark svg circle:last-child{fill:currentColor!important}
+.whatsapp-mark svg{fill:none!important}
