@@ -3,3 +3,10 @@
 @media(max-width:900px){.cms-event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.cms-event-grid{grid-template-columns:1fr}.cms-event-meta b{font-size:12px}.cms-event-card{padding:18px}.cms-result{padding:14px}.cms-result h3{font-size:18px}}
 
 .cms-upload-preview{display:block;width:min(100%,360px);max-height:280px;object-fit:contain;background:#111;border:1px solid #333;margin:10px 0 16px}.cms-event-featured-live{grid-column:1/-1;border-color:#b92a32;padding:clamp(18px,3vw,32px);box-shadow:0 0 0 1px rgba(220,35,48,.12)}.cms-event-featured-live .cms-event-poster{height:auto;max-height:none;min-height:260px;aspect-ratio:16/9}.cms-event-featured-live .cms-event-poster img{object-fit:contain;background:#070707}.cms-live-feature-banner{display:block;background:#be2530;color:white;font-weight:900;letter-spacing:.15em;padding:10px 14px;margin:-22px -22px 20px}.cms-result-image{width:100%;max-width:280px;max-height:220px;object-fit:cover;display:block;margin-bottom:14px}.cms-achievement-image{width:100%;max-height:320px;aspect-ratio:16/9;object-fit:cover;display:block;margin-bottom:16px}.cms-shared-post-image{width:100%;max-height:260px;object-fit:cover;display:block}.cms-news-image{width:100%;height:100%;min-height:220px;max-height:460px;object-fit:cover;display:block}
+
+/* Competitive page: featured event before navigation shortcuts */
+.main-tournament-heading{margin-top:26px}
+.competitive-shortcuts{margin:32px 0 18px}
+.cms-event-featured-live .cms-event-poster{min-height:340px;aspect-ratio:16/10}
+.cms-event-featured-live .cms-event-poster img{object-fit:contain}
+@media(max-width:600px){.cms-event-featured-live .cms-event-poster{min-height:270px;aspect-ratio:4/3}.competitive-shortcuts{margin-top:24px}}
