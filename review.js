@@ -1,24 +1,16 @@
 (() => {
-  const key = 'dominx-questions';
-  const safeLoad = () => { try { const value=JSON.parse(localStorage.getItem(key)||'[]'); return Array.isArray(value)?value:[]; } catch { return []; } };
-  const safeSave = rows => { try { localStorage.setItem(key, JSON.stringify(rows)); return true; } catch { return false; } };
-  const escapeHTML = s => String(s).replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
-  const list = document.getElementById('question-list');
-  const render = () => {
-    if (!list) return;
-    const rows = safeLoad();
-    const welcome = '<div class="review-chat-welcome"><span class="review-chat-avatar">D</span><div class="review-chat-bubble"><strong>DOMINX</strong><p>Welcome! Send us your question here. We’ll reply when available.</p></div></div>';
-    if (!rows.length) { list.innerHTML = welcome; return; }
-    list.innerHTML = welcome + rows.map(row => `<div class="review-chat-thread"><div class="review-chat-user"><div class="review-chat-bubble"><p>${escapeHTML(row.message||'')}</p><small>${escapeHTML(row.name||'Guest')} · ${escapeHTML(row.date||'')}</small></div></div>${row.reply ? `<div class="review-chat-admin"><span class="review-chat-avatar">D</span><div class="review-chat-bubble"><strong>DOMINX</strong><p>${escapeHTML(row.reply)}</p></div></div>` : `<div class="review-chat-admin"><span class="review-chat-avatar">D</span><div class="review-chat-bubble review-chat-pending"><strong>DOMINX</strong><p>Message sent — reply pending.</p></div></div>`}</div>`).join('');
-    list.scrollTop = list.scrollHeight;
-  };
-  const form = document.getElementById('question-form');
-  if (form) form.addEventListener('submit', e => {
-    e.preventDefault(); const data = new FormData(form); const message = String(data.get('message')||'').trim(); if (!message) return;
-    const rows = safeLoad(); rows.push({name:String(data.get('name')||'').trim(), message, date:new Date().toLocaleString(), reply:''});
-    if (!safeSave(rows)) { const toast=document.querySelector('.toast'); if(toast){toast.textContent='Could not save message on this device.';toast.classList.add('show');} return; }
-    render(); form.reset();
-    const toast=document.querySelector('.toast'); if(toast){toast.textContent='Message saved on this device. Admin replies need the online setup.';toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),3200);}
-  });
+  const key='dominx-questions';
+  const cfg=window.DOMINX_CMS_CONFIG||{};
+  const configured=cfg.supabaseUrl&&!cfg.supabaseUrl.includes('YOUR-PROJECT')&&cfg.supabaseAnonKey&&!cfg.supabaseAnonKey.includes('YOUR-SUPABASE')&&window.supabase;
+  const client=configured?window.DOMINX_SUPABASE_CLIENT:null;
+  const safeLoad=()=>{try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[];}catch{return[];}};
+  const safeSave=rows=>{try{localStorage.setItem(key,JSON.stringify(rows));return true;}catch{return false;}};
+  const uuid=()=>{try{return crypto.randomUUID();}catch{return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16);});}};
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const list=document.getElementById('question-list'),form=document.getElementById('question-form');
+  const toast=m=>{const t=document.querySelector('.toast');if(t){t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}};
+  async function updateReplies(rows){if(!client)return rows;await Promise.all(rows.map(async r=>{if(!r.token)return;const {data,error}=await client.rpc('get_review_reply',{p_token:r.token});if(!error&&data&&data.length)r.reply=data[0].reply||'';}));safeSave(rows);return rows;}
+  const render=async()=>{if(!list)return;let rows=safeLoad();rows=await updateReplies(rows);const welcome='<div class="review-chat-welcome"><span class="review-chat-avatar">D</span><div class="review-chat-bubble"><strong>DOMINX</strong><p>Welcome! Send us your question here. We’ll reply when available.</p></div></div>';if(!rows.length){list.innerHTML=welcome;return;}list.innerHTML=welcome+rows.map(r=>`<div class="review-chat-thread"><div class="review-chat-user"><div class="review-chat-bubble"><p>${esc(r.message||'')}</p><small>${esc(r.name||'Guest')} · ${esc(r.date||'')}</small></div></div>${r.reply?`<div class="review-chat-admin"><span class="review-chat-avatar">D</span><div class="review-chat-bubble"><strong>DOMINX</strong><p>${esc(r.reply)}</p></div></div>`:`<div class="review-chat-admin"><span class="review-chat-avatar">D</span><div class="review-chat-bubble review-chat-pending"><strong>DOMINX</strong><p>Message sent — reply pending.</p></div></div>`}</div>`).join('');list.scrollTop=list.scrollHeight;};
+  if(form)form.addEventListener('submit',async e=>{e.preventDefault();const data=new FormData(form),message=String(data.get('message')||'').trim();if(!message)return;const row={name:String(data.get('name')||'').trim().slice(0,40),message:message.slice(0,600),date:new Date().toLocaleString(),reply:'',token:uuid()};if(client){const {error}=await client.rpc('submit_review',{p_token:row.token,p_name:row.name||'Guest',p_message:row.message});if(error){toast('Could not send message: '+error.message);return;}}const rows=safeLoad();rows.push(row);if(!safeSave(rows)){toast('Message sent, but this device could not save the conversation token.');return;}await render();form.reset();toast(client?'Message sent to DOMINX.':'Message saved on this device only. Online replies require Supabase setup.');});
   render();
 })();

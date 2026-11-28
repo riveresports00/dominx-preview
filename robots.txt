@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Sitemap: https://riveresports00.github.io/dominx-preview/sitemap.xml

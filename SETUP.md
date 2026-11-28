@@ -1,28 +1,37 @@
-# DOMINX ESPORTS CMS — Setup
+# DOMINX ESPORTS CMS setup
 
-## Included
-- Existing Dominx site with its original logo and banner
-- Separate roster and competitive pages
-- Competitive hub reads tournaments/results/achievements from Supabase when configured
-- Admin login and tournament create/edit/delete/publish controls
-- Each event automatically shows a REGISTER NOW button using that event's registration_url
-- Status controls: upcoming/live/closed/completed/postponed
+This package retains the existing public website pages and extends the Admin panel for the supported CMS areas. No Supabase keys are included.
 
-## Backend setup required for persistent CMS
-1. Create a Supabase project at https://supabase.com/ (the website ZIP does not create an online backend).
-2. Open the project SQL Editor and execute `schema.sql`.
-3. In Supabase Authentication, create your admin user and enable email/password sign-in.
-4. Copy the Project URL and anon/public key from Project Settings > API. Paste them in `config.js`. Never place a service-role key in website files.
-5. Restrict CMS writes with the included `admin_users` allowlist: copy the admin account UUID from Authentication > Users, then add that UUID into `public.admin_users` in the SQL editor. The included policies only allow allowlisted UUIDs to create/update/delete. Do not invite accounts as admins unless you trust them.
-6. Deploy the static site to your host. Admin URL is `/admin.html`.
+## Before setup
+1. Create a Supabase project.
+2. Supabase SQL Editor: run the entire `schema.sql` once. This creates/updates the tournament, results, achievements, social links, shared posts and review-message tables, RLS policies, Review RPC functions, and the Management profiles table plus public photo bucket/policies. If you already ran an earlier schema version, run this updated schema as a migration in SQL Editor; named policies are recreated and new CMS tables/functions are added. Existing Review messages stored only in localStorage are not migrated.
+3. In Authentication > Users, create the owner/admin account and enable email/password login.
+4. Copy Project URL and anon/public key into `config.js`. Never put a service-role/secret key into the website.
+5. Add your admin UUID from Auth > Users into the allowlist with: `insert into public.admin_users (user_id) values ('YOUR-UUID') on conflict do nothing;`
+6. Host the static files. Open `/admin.html` and sign in. Management photo uploads use the `management-photos` Storage bucket created by `schema.sql`.
 
-## Tournament form
-Fields: title, game, status, event date, slots, prize pool, poster image URL, registration URL, description, published checkbox. The registration URL is stored per tournament. Public event cards create a Register Now link automatically when status is Upcoming/Live and a URL exists. Completed events show View Results; closed/postponed are non-registerable.
+## Admin sections
+- Tournaments: add/edit/delete, event date, game, status, slots, prize, poster URL, registration URL, description and publish visibility.
+- Results: add/edit/delete result rows.
+- Achievements: add/edit/delete milestones.
+- Social Links: edit six official links (Instagram, Discord, YouTube, X, WhatsApp, Facebook). Homepage icon destinations and Social page channel list read these values.
+- Share Updates / Links: create, edit, delete and publish update cards with title, description, and optional external HTTPS link. Published posts appear on the Social page.
+- Review Inbox: read submitted visitor questions, reply, and delete messages.
+- Roster: edit the four existing lineup slots (name, role, bio and optional HTTPS profile link).
+- Homepage News: edit featured headline, description and optional HTTPS link. Visitors see replies only through their per-device conversation token. Review submissions are online when configured; without Supabase they remain device-local.
+- Management: add/edit/delete members, upload a profile image (JPG/PNG/WEBP/GIF, max 5 MB), free-text role, optional Instagram URL and email, display order, and show/hide profiles. Public profiles appear on `management.html`; Instagram and mail icons open their respective links. The homepage Community section has a 7th Management tile.
 
-## Admin security
-- Do not publish the Supabase service-role/secret key in `config.js`.
-- The included SQL uses an `admin_users` allowlist table. Only user IDs added to this table can write CMS records. Keep this list limited to trusted admins.
-- For local static preview, public data uses an empty fallback; the admin panel will not allow fake local-only login or write actions.
+## Security
+- Admin table writes use allowlisted user UUIDs.
+- Public users can read published tournaments, results, achievements, social links and published share posts.
+- Review messages are not publicly selectable. Public submissions and token-scoped reply retrieval use RPC functions. Replies and message reads in Admin require an allowlisted authenticated user.
+- Keep the allowlist limited to trusted accounts. Do not share admin passwords.
 
-## Preview
-Run from this folder: `python -m http.server 8080` then open `http://localhost:8080`.
+## Limitations
+- The package's public social-link updater requires Supabase configuration; otherwise the original hard-coded links remain as a fallback.
+- Social-page content cards use fallback placeholders if no published updates are available or Supabase is unconfigured.
+- Online Review depends on running the SQL and adding the admin UUID. Local-only conversations cannot be migrated automatically.
+- Browser visual/click testing with a real Supabase project is still required before launch.
+
+## Local preview
+Run `python -m http.server 8080` in the site directory, then visit `http://localhost:8080`.

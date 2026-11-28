@@ -1,0 +1,38 @@
+DOMINX CMS comprehensive conservative update
+
+Base used: DOMINX-COMMUNITY-SOCIAL-LINKS-FIXED.zip. Existing public design and core pages retained. New CMS functions added around existing sections.
+
+Admin capabilities in this package:
+- Tournament create/edit/delete, visibility, event metadata and registration links (existing Admin CMS).
+- Results create/edit/delete (existing Admin CMS addition).
+- Achievements create/edit/delete (existing Admin CMS addition).
+- Six social URL edits (Instagram, Discord, YouTube, X, WhatsApp, Facebook).
+- Shared update/link posts create/edit/delete/publish with optional HTTPS destination.
+- Review inbox read, reply, delete; visitor sends through RPC and sees replies using per-device token, without public message-table SELECT access.
+- Four roster slots edit player name, role, bio and optional HTTPS profile link.
+- Homepage featured News headline, body and optional HTTPS link.
+
+Public integration:
+- Homepage social icon hrefs are updated from social_links when Supabase is configured; existing hardcoded hrefs remain fallback.
+- Social page shows official social destinations and published share posts when configured; non-link placeholder cards remain fallback and have no dead href="#".
+- Homepage news feature and roster cards load CMS values when configured; layout remains the existing markup.
+- Tournament, Results and Achievements public CMS behavior is retained.
+
+Checks performed:
+- ZIP integrity test.
+- Node syntax check for local JavaScript files.
+- HTML parsing and duplicate-ID checks on admin, index, social, review, competitive and roster pages.
+- Social page checked for placeholder anchors href="#" (none).
+
+Not tested:
+- Visual browser click testing (headless browser launch/dump did not complete within timeout).
+- Supabase SQL execution against a live project, authentication, policies, and multi-device Review behavior.
+- Live deployment/cache behavior.
+
+Management CMS addition (current package):
+- Community section now includes 7th Management tile; only COMMUNITY heading number 05 removed.
+- Separate management.html page shows published profiles, photo, name, free-text role, optional Instagram and email icons.
+- Admin Management section supports add/edit/delete, photo upload (5 MB image types), show/hide and order.
+- Supabase schema adds management_members table and management-photos public bucket with allowlisted admin write policies.
+- Bottom 4 navigation buttons and other existing pages/scripts intentionally unchanged.
+- Added sitemap.xml and robots.txt; Google Search Console verification meta intentionally not added yet.

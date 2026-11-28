@@ -1,6 +1,6 @@
 (() => {
  const cfg=window.DOMINX_CMS_CONFIG||{}; const configured=cfg.supabaseUrl&&cfg.supabaseAnonKey&&!cfg.supabaseUrl.includes('YOUR-PROJECT')&&!cfg.supabaseAnonKey.includes('YOUR-SUPABASE');
- const client=configured&&window.supabase?window.supabase.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey):null;
+ const client=configured?window.DOMINX_SUPABASE_CLIENT:null;
  const local=()=>JSON.parse(localStorage.getItem('dominx_demo_cms')||'{"tournaments":[],"results":[],"achievements":[]}');
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const fmtDate=s=>{if(!s)return 'DATE TBA';try{return new Date(s+'T00:00:00').toLocaleDateString(undefined,{day:'2-digit',month:'short',year:'numeric'});}catch{return s}};
