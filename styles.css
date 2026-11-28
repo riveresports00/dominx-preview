@@ -273,3 +273,29 @@ body{padding-bottom:100px}
 .instagram-mark svg rect,.instagram-mark svg circle{stroke:currentColor!important;stroke-width:2.1!important}
 .instagram-mark svg circle:last-child{fill:currentColor!important}
 .whatsapp-mark svg{fill:none!important}
+
+/* RADIAL MENU ICON VISIBILITY FIX */
+.radial-menu-item .radial-icon,
+.radial-menu-item .radial-icon svg{
+  display:grid!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.radial-menu-item .radial-icon{
+  color:#e21c2a!important;
+}
+.radial-menu-item .radial-icon svg{
+  width:21px!important;
+  height:21px!important;
+  overflow:visible!important;
+  stroke:currentColor!important;
+}
+.radial-menu-item .radial-icon svg path,
+.radial-menu-item .radial-icon svg line,
+.radial-menu-item .radial-icon svg circle,
+.radial-menu-item .radial-icon svg polyline,
+.radial-menu-item .radial-icon svg polygon,
+.radial-menu-item .radial-icon svg rect{
+  visibility:visible!important;
+  opacity:1!important;
+}
