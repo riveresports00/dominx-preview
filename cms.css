@@ -10,3 +10,11 @@
 .cms-event-featured-live .cms-event-poster{min-height:340px;aspect-ratio:16/10}
 .cms-event-featured-live .cms-event-poster img{object-fit:contain}
 @media(max-width:600px){.cms-event-featured-live .cms-event-poster{min-height:270px;aspect-ratio:4/3}.competitive-shortcuts{margin-top:24px}}
+
+/* Competition featured poster enlargement */
+.cms-event-featured-live .cms-event-poster{min-height:480px;height:auto;aspect-ratio:auto}
+.cms-event-featured-live .cms-event-poster img{width:100%;height:auto;max-height:none;object-fit:contain}
+@media(max-width:600px){
+.cms-event-featured-live .cms-event-poster{min-height:380px;height:auto;aspect-ratio:auto}
+.cms-event-featured-live .cms-event-poster img{width:100%;height:auto;max-height:none;object-fit:contain}
+}
