@@ -33,3 +33,25 @@
 .cms-top5-card.rank-1{border-color:#b52d35}
 .cms-top5-card.rank-1 .cms-top5-rank{color:#f3c45a}
 @media(max-width:650px){.cms-top5{padding:12px}.cms-top5-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cms-top5-card.rank-1{grid-column:1/-1}.cms-top5-card.rank-1 img,.cms-top5-card.rank-1 .cms-top5-photo-placeholder{aspect-ratio:16/9;max-height:240px;object-fit:contain}}
+
+/* Event results panel refresh: poster + compact Top 5 standings */
+.cms-result-panel{margin:24px 0 34px;padding:clamp(14px,3vw,24px);background:#101012;border:1px solid #30282b;border-radius:10px;overflow:hidden}
+.cms-result-panel-head small{display:block;color:#e21c2a;font-size:10px;font-weight:800;letter-spacing:.16em}
+.cms-result-panel-head h3{margin:7px 0 5px;color:#f5f4f3;font-size:clamp(22px,4vw,32px);line-height:1.15;overflow-wrap:anywhere}
+.cms-result-panel-title{margin-bottom:16px;color:#aaa;font-size:clamp(12px,2vw,15px);font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.cms-result-panel-poster{margin:0 0 18px;background:#080809;border:1px solid #2b2729;border-radius:7px;overflow:hidden;text-align:center}
+.cms-result-panel-poster img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain;margin:0 auto}
+.cms-result-panel-list{display:grid;gap:8px}
+.cms-result-panel-row{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px 15px;background:#181719;border:1px solid #302b2d;border-radius:6px;min-width:0}
+.cms-result-panel-rank{color:#e21c2a;font-size:16px;font-weight:900}
+.cms-result-panel-team{color:#f5f4f3;font-weight:800;overflow-wrap:anywhere}
+.cms-result-panel-points{color:#fff;font-size:13px;font-weight:800;white-space:nowrap}
+.cms-result-panel-row:first-child{border-color:rgba(226,28,42,.45)}.cms-result-panel-row:first-child .cms-result-panel-rank{color:#f2c45a}
+@media(max-width:480px){.cms-result-panel{padding:12px}.cms-result-panel-row{grid-template-columns:34px minmax(0,1fr) auto;padding:11px 10px;gap:8px}.cms-result-panel-poster img{max-height:none}}
+/* Admin batch result entry */
+.result-panel-form .result-teams-label{margin:20px 0 12px;color:#e21c2a;font-size:13px;letter-spacing:.1em}
+.result-team-fields{display:grid;gap:10px}
+.result-team-row{display:grid;grid-template-columns:34px minmax(0,1fr) minmax(90px,.5fr);align-items:end;gap:10px;padding:10px;background:#151416;border:1px solid #302b2d;border-radius:6px}
+.result-team-row>b{color:#e21c2a;font-weight:900;padding-bottom:9px}
+.result-team-row label{min-width:0}
+@media(max-width:500px){.result-team-row{grid-template-columns:28px minmax(0,1fr) 88px;gap:7px;padding:8px}.result-team-row label{font-size:11px}}

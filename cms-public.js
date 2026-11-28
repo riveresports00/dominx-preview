@@ -11,14 +11,18 @@
  async function renderResults(){
  const target=document.querySelector('#cms-results');if(!target)return;
  const rows=await getRows('results');
- if(!rows.length){target.innerHTML='<div class="empty-state"><strong>RESULTS WILL BE POSTED HERE</strong>Match placements and score summaries will be published when available.</div>';return;}
- const ranked=rows.filter(r=>/^\s*[1-5]\s*$/.test(String(r.placement||'')));
- const legacy=rows.filter(r=>!/^\s*[1-5]\s*$/.test(String(r.placement||'')));
- const groups={};ranked.forEach(r=>{const key=String(r.event_name||'EVENT');(groups[key]||(groups[key]=[])).push(r);});
- const leaderboards=Object.entries(groups).map(([event,items])=>`<section class="cms-top5"><header class="cms-top5-heading"><small>TOURNAMENT RESULTS</small><h3>${esc(event)}</h3><p>TOP 5</p></header><div class="cms-top5-grid">${items.sort((a,b)=>Number(a.placement)-Number(b.placement)).slice(0,5).map(r=>`<article class="cms-top5-card rank-${Number(r.placement)}"><div class="cms-top5-rank">#${Number(r.placement)}</div>${r.image_url?`<img src="${esc(r.image_url)}" alt="${esc(r.team_name||r.title||'Rank '+r.placement)}" loading="lazy">`:`<div class="cms-top5-photo-placeholder">DOMINX</div>`}<h4>${esc(r.team_name||r.title||'Team')}</h4>${r.score?`<p class="cms-top5-score">${esc(r.score)}${r.result?` · ${esc(r.result)}`:''}</p>`:r.result?`<p class="cms-top5-score">${esc(r.result)}</p>`:''}</article>`).join('')}</div></section>`).join('');
- const oldResults=legacy.length?`<div class="cms-results-list">${legacy.map(r=>`<article class="cms-result">${r.image_url?`<img class="cms-result-image" src="${esc(r.image_url)}" alt="${esc(r.title||r.event_name||'Result')}" loading="lazy">`:''}<div><small>${esc(r.event_name||'EVENT')}</small><h3>${esc(r.title||r.team_name||'Result')}</h3></div><div class="cms-result-value">${esc(r.result||r.placement||r.score||'—')}</div></article>`).join('')}</div>`:'';
- target.innerHTML=leaderboards+oldResults;
-}
+ if(!rows.length){target.innerHTML='<div class="empty-state"><strong>RESULTS WILL BE POSTED HERE</strong>Event standings will be published when available.</div>';return;}
+ const groups={};rows.forEach(r=>{const key=String(r.event_name||'EVENT')+'\u001f'+String(r.title||'');(groups[key]||(groups[key]=[])).push(r);});
+ const panels=Object.values(groups).map(items=>{
+  items.sort((a,b)=>Number(a.placement||99)-Number(b.placement||99));
+  const event=items[0].event_name||'EVENT',title=items[0].title||'EVENT RESULTS';
+  const imgs=[...new Set(items.map(r=>r.image_url).filter(Boolean))];const poster=imgs.length===1&&items.every(r=>r.image_url===imgs[0])?imgs[0]:null;
+  const top=items.filter(r=>/^\s*[1-5]\s*$/.test(String(r.placement||''))).slice(0,5);
+  const shown=top.length?top:items.slice(0,5);
+  return `<section class="cms-result-panel"><header class="cms-result-panel-head"><small>EVENT NAME</small><h3>${esc(event)}</h3><div class="cms-result-panel-title">${esc(title)}</div></header>${poster?`<div class="cms-result-panel-poster"><img src="${esc(poster)}" alt="${esc(event)} results poster" loading="lazy"></div>`:''}<div class="cms-result-panel-list">${shown.map((r,i)=>{const rank=Number(r.placement)||i+1;const points=r.score||r.result||'—';return `<div class="cms-result-panel-row"><b class="cms-result-panel-rank">#${rank}</b><span class="cms-result-panel-team">${esc(r.team_name||'Team')}</span><span class="cms-result-panel-points">${esc(points)}</span></div>`;}).join('')}</div></section>`;
+ }).join('');
+ target.innerHTML=panels;
+ }
  async function renderAchievements(){const target=document.querySelector('#cms-achievements');if(!target)return;const rows=await getRows('achievements');target.innerHTML=rows.length?rows.map(a=>`<article class="cms-achievement">${a.image_url?`<img class="cms-achievement-image" src="${esc(a.image_url)}" alt="${esc(a.title||'Achievement')}" loading="lazy">`:''}<span>${esc(a.date||'')}</span><h3>${esc(a.title||'Achievement')}</h3><p>${esc(a.description||'')}</p></article>`).join(''):'<div class="empty-state"><strong>THE JOURNEY IS JUST BEGINNING</strong>Team milestones and accomplishments will be featured here.</div>'; }
  window.DominxCMS={client,configured,renderTournaments,renderResults,renderAchievements,refresh:async()=>{await renderTournaments();await renderResults();await renderAchievements();}};
  document.addEventListener('DOMContentLoaded',()=>window.DominxCMS.refresh());
