@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dominx Connection Diagnostic</title>
+<style>
+body{background:#090909;color:#eee;font-family:Arial;padding:22px}
+h2{color:#e33}
+.box{background:#171717;border:1px solid #333;border-radius:10px;padding:15px;margin:12px 0}
+.ok{color:#4c9}.bad{color:#f66}.wait{color:#fc6}
+</style>
+</head>
+<body>
+<h2>DOMINX CONNECTION TEST</h2>
+<div id="results" class="box">Testing...</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+const out=document.getElementById('results');
+function test(name,ok,detail){
+ out.innerHTML+=`<p class="${ok?'ok':'bad'}">${ok?'PASS':'FAIL'} — ${name}: ${detail}</p>`;
+}
+out.innerHTML='';
+test('Supabase CDN',!!window.supabase,
+ window.supabase?'Library loaded':'Library missing');
+const cfg=window.DOMINX_CMS_CONFIG;
+test('Configuration',!!(cfg&&cfg.supabaseUrl&&cfg.supabaseAnonKey),
+ cfg?'Config object detected':'Config missing');
+test('Project URL',!!(cfg&&/^https:\/\/.+\.supabase\.co$/.test(cfg.supabaseUrl)),
+ cfg&&cfg.supabaseUrl?'URL format valid':'URL missing');
+test('Client',!!window.DOMINX_SUPABASE_CLIENT,
+ window.DOMINX_SUPABASE_CLIENT?'Client created':'Client is null');
+</script>
+</body>
+</html>
