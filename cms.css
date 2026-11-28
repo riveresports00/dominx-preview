@@ -11,10 +11,25 @@
 .cms-event-featured-live .cms-event-poster img{object-fit:contain}
 @media(max-width:600px){.cms-event-featured-live .cms-event-poster{min-height:270px;aspect-ratio:4/3}.competitive-shortcuts{margin-top:24px}}
 
-/* Competition featured poster enlargement */
-.cms-event-featured-live .cms-event-poster{min-height:480px;height:auto;aspect-ratio:auto}
+/* Tournament poster: show the complete uploaded artwork without cropping */
+.cms-event-poster{height:auto;min-height:320px;max-height:none;display:flex;align-items:center;justify-content:center;overflow:visible;padding:0;background:#080808}
+.cms-event-poster img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center}
+.cms-event-featured-live .cms-event-poster{height:auto;min-height:360px;max-height:none;aspect-ratio:auto}
 .cms-event-featured-live .cms-event-poster img{width:100%;height:auto;max-height:none;object-fit:contain}
-@media(max-width:600px){
-.cms-event-featured-live .cms-event-poster{min-height:380px;height:auto;aspect-ratio:auto}
-.cms-event-featured-live .cms-event-poster img{width:100%;height:auto;max-height:none;object-fit:contain}
-}
+@media(max-width:600px){.cms-event-poster{min-height:260px}.cms-event-featured-live .cms-event-poster{min-height:320px}}
+
+/* Tournament Top 5 photo leaderboard */
+.cms-top5{margin:24px 0 32px;padding:18px;background:#101012;border:1px solid #2a2528}
+.cms-top5-heading small{color:#d63b43;letter-spacing:.14em;font-weight:800}
+.cms-top5-heading h3{font-size:clamp(22px,4vw,30px);margin:8px 0}
+.cms-top5-heading p{color:#888;font-size:11px;letter-spacing:.15em;margin:0 0 16px}
+.cms-top5-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.cms-top5-card{min-width:0;background:#171517;border:1px solid #302b2d;padding:12px;text-align:center}
+.cms-top5-rank{font-weight:900;color:#e44a51;font-size:20px;margin-bottom:10px}
+.cms-top5-card img,.cms-top5-photo-placeholder{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:#0b0b0b}
+.cms-top5-photo-placeholder{display:flex;align-items:center;justify-content:center;color:#555;font-size:12px;font-weight:900;letter-spacing:.1em}
+.cms-top5-card h4{font-size:clamp(12px,2vw,17px);overflow-wrap:anywhere;margin:12px 0 6px}
+.cms-top5-score{font-size:12px;color:#aaa;margin:0;overflow-wrap:anywhere}
+.cms-top5-card.rank-1{border-color:#b52d35}
+.cms-top5-card.rank-1 .cms-top5-rank{color:#f3c45a}
+@media(max-width:650px){.cms-top5{padding:12px}.cms-top5-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cms-top5-card.rank-1{grid-column:1/-1}.cms-top5-card.rank-1 img,.cms-top5-card.rank-1 .cms-top5-photo-placeholder{aspect-ratio:16/9;max-height:240px;object-fit:contain}}
